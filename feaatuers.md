@@ -38,7 +38,6 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 - Role-based access (Admin, HR, Employee)
 - Department-based permissions
 - Secure session handling
-
 ---
 
 ## 🏠 Role-Based Dashboards

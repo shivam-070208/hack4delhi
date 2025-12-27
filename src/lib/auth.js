@@ -36,6 +36,21 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    // Allow only users in the database to sign in, no new users created by Google OAuth
+    async profile(profile) {
+      return {
+        id: profile.sub,
+        name: profile.name,
+        email: profile.email,
+        image: profile.picture,
+      };
+    },
+    async signIn({ profile }) {
+      if (!profile?.email) return false;
+      await connectDB();
+      const user = await User.findOne({ email: profile.email.toLowerCase() }).lean();
+      return !!user;
+    },
     }),
   ],
   session: {
@@ -45,10 +60,16 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role;
+      } else if (token?.email) {
+        await connectDB();
+        const dbUser = await User.findOne({ email: token.email.toLowerCase() }).lean();
+        if (dbUser) {
+          token.role = dbUser.role;
+        }
       }
       return token;
     },
-
+    
     async session({ session, token }) {
       session.user.role = token.role;
       return session;

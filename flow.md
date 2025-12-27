@@ -62,12 +62,11 @@ The initial Admin account is **predefined (bootstrapped)** during deployment via
 - A predefined Admin account exists
 - No registration page is exposed
 - System is locked and secure from first use
-
 ---
 
 ### Phase 1: Login & Access
 1. User logs in using Employee ID and password
-2. better-auth authenticates the user
+2. next-auth authenticates the user
 3. A secure session is created containing:
    - User ID
    - Role (ADMIN / HR / EMPLOYEE)
@@ -80,7 +79,6 @@ The initial Admin account is **predefined (bootstrapped)** during deployment via
 - Admin logs in and creates HR accounts
 - HR logs in and creates Employee accounts for their department
 - Employees only log in; they never register
-
 ---
 
 ### Phase 3: Employee Management
