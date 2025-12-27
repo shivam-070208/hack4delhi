@@ -11,19 +11,19 @@ export const getSession = async () => {
 };
 
 export const authRequire = async (role = "user") => {
-  const { user } = (await getSession()) || {};
-  if (!user) {
+  const session = (await getSession()) || {};
+  if (!session?.user) {
     redirect("/login");
   }
-  if (user.role !== role) {
+  if (session?.user.role !== role) {
     forbidden();
   }
 };
 
 export const unauthRequire = async () => {
-  const { user } = await getSession();
-  if (user) {
-    if (user.role === "admin") {
+  const session = await getSession();
+  if (session&&session?.user) {
+    if (session?.user.role === "admin") {
       redirect("/admin/dashboard");
     } else {
       redirect("/login");
