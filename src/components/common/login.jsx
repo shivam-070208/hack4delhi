@@ -65,10 +65,12 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <Card className="w-full max-w-md mx-auto">
+    <div className="bg-muted flex min-h-screen items-center justify-center">
+      <Card className="mx-auto w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Login</CardTitle>
+          <CardTitle className="text-center text-2xl font-bold">
+            Login
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Form onSubmit={handleEmailPasswordLogin} className="space-y-4">
@@ -106,26 +108,28 @@ export default function Login() {
                 <FormMessage />
               </FormItem>
             </FormField>
-            {formError && <div className="text-sm text-red-500">{formError}</div>}
+            {formError && (
+              <div className="text-sm text-red-500">{formError}</div>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </Button>
           </Form>
 
           <div className="my-6 flex items-center">
-            <span className="flex-1 h-px bg-gray-300" />
-            <span className="mx-4 text-gray-500 text-sm">OR</span>
-            <span className="flex-1 h-px bg-gray-300" />
+            <span className="h-px flex-1 bg-gray-300" />
+            <span className="mx-4 text-sm text-gray-500">OR</span>
+            <span className="h-px flex-1 bg-gray-300" />
           </div>
 
           <Button
             type="button"
             variant="secondary"
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2"
+            className="flex w-full items-center justify-center gap-2"
             disabled={loading}
           >
-            <svg className="w-5 h-5" viewBox="0 0 48 48">
+            <svg className="h-5 w-5" viewBox="0 0 48 48">
               <g>
                 <path
                   d="M44.5 20H24v8.5h11.9A10.5 10.5 0 1134 13a10.47 10.47 0 016.6 2.3l6.2-6.2A19.8 19.8 0 0024 4C12.96 4 4 12.96 4 24c0 11.04 8.96 20 20 20 10.37 0 19.09-7.87 19.92-18H44.5z"

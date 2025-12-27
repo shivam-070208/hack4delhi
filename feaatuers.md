@@ -7,6 +7,7 @@ A centralized Human Resource Management System (HRMS) designed to digitize and s
 ## 🎯 Objective
 
 To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
+
 - Employee records
 - Attendance & leave
 - Payroll
@@ -30,24 +31,29 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🔐 Authentication & Access Control (MVP)
 
 ### Pages
+
 - `/login`
 - `/unauthorized`
 
 ### Features
+
 - Employee ID–based login
 - Role-based access (Admin, HR, Employee)
 - Department-based permissions
 - Secure session handling
+
 ---
 
 ## 🏠 Role-Based Dashboards
 
 ### Pages
+
 - `/dashboard/admin`
 - `/dashboard/hr`
 - `/dashboard/employee`
 
 ### Features
+
 - Key statistics overview
 - Pending approvals
 - Notifications & alerts
@@ -57,11 +63,13 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🧑‍💼 Employee Management (Core Module)
 
 ### Pages
+
 - `/employees`
 - `/employees/add`
 - `/employees/[id]`
 
 ### Features
+
 - Add and view employees
 - Department & designation mapping
 - Active / inactive status
@@ -72,11 +80,13 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🕒 Attendance & Leave Management
 
 ### Pages
+
 - `/attendance`
 - `/attendance/logs`
 - `/attendance/leave-request`
 
 ### Features
+
 - Manual or QR-based attendance
 - Leave request & approval flow
 - Daily attendance records
@@ -86,11 +96,13 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 💰 Payroll Management (Simplified MVP)
 
 ### Pages
+
 - `/payroll`
 - `/payroll/run`
 - `/payroll/slips`
 
 ### Features
+
 - Fixed salary structure
 - Attendance-based salary calculation
 - Auto-generated salary slips (PDF)
@@ -100,10 +112,12 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🔁 Transfer Management
 
 ### Pages
+
 - `/transfers`
 - `/transfers/request`
 
 ### Features
+
 - Transfer request submission
 - Single-level approval
 - Transfer history tracking
@@ -113,11 +127,13 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🗂️ Grievance Redressal System
 
 ### Pages
+
 - `/grievances`
 - `/grievances/new`
 - `/grievances/[id]`
 
 ### Features
+
 - Grievance filing by employees
 - Status tracking (Open → Resolved)
 - Assigned authority dashboard
@@ -127,10 +143,12 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## ⚙️ Admin & System Settings
 
 ### Pages
+
 - `/admin/users`
 - `/admin/departments`
 
 ### Features
+
 - User role assignment
 - Department management
 - Basic audit logging
@@ -151,12 +169,14 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## ✅ MVP Scope Summary
 
 **Included**
+
 - Secure login & roles
 - Central employee database
 - Attendance-driven payroll
 - Basic transfers & grievances
 
 **Excluded (Future Scope)**
+
 - AI analytics
 - Biometric hardware integration
 - Multi-level approvals
@@ -168,6 +188,7 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 ## 🚀 MVP Value Proposition
 
 This MVP establishes a **single source of truth** for MCD’s workforce, demonstrating:
+
 - Operational efficiency
 - Transparency in governance
 - Scalability for city-wide deployment
