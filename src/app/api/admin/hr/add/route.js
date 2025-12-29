@@ -11,14 +11,14 @@ export async function POST(req) {
     if (!session) {
       return NextResponse.json(
         { error: "Unauthorized: Not authenticated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     if (session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Forbidden: Only Admin can add HR users" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -30,14 +30,14 @@ export async function POST(req) {
     if (!name || !email || !password || !role) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (role !== "HR") {
       return NextResponse.json(
         { error: "Admin can create only HR users" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -48,7 +48,7 @@ export async function POST(req) {
     if (existingUser) {
       return NextResponse.json(
         { error: "User with this email already exists" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -71,12 +71,12 @@ export async function POST(req) {
           status: newUser.status,
         },
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

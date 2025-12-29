@@ -11,7 +11,9 @@ import { Button } from "@/components/ui/button";
 const formSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email({ message: "Invalid email" }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters" }),
   role: z.enum(["HR", "EMPLOYEE"], { message: "Select a role" }),
 });
 
@@ -43,7 +45,9 @@ export default function UserForm({ onClose }) {
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
       {/* Name Field */}
       <div>
-        <label htmlFor="name" className="block font-medium mb-1">Name</label>
+        <label htmlFor="name" className="mb-1 block font-medium">
+          Name
+        </label>
         <Input
           id="name"
           placeholder="Name"
@@ -53,13 +57,17 @@ export default function UserForm({ onClose }) {
           aria-invalid={!!form.formState.errors.name}
         />
         {form.formState.errors.name && (
-          <p className="text-red-600 text-sm mt-1">{form.formState.errors.name.message}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {form.formState.errors.name.message}
+          </p>
         )}
       </div>
 
       {/* Email Field */}
       <div>
-        <label htmlFor="email" className="block font-medium mb-1">Email</label>
+        <label htmlFor="email" className="mb-1 block font-medium">
+          Email
+        </label>
         <Input
           id="email"
           placeholder="Email"
@@ -69,13 +77,17 @@ export default function UserForm({ onClose }) {
           aria-invalid={!!form.formState.errors.email}
         />
         {form.formState.errors.email && (
-          <p className="text-red-600 text-sm mt-1">{form.formState.errors.email.message}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {form.formState.errors.email.message}
+          </p>
         )}
       </div>
-      
+
       {/* Password Field */}
       <div>
-        <label htmlFor="password" className="block font-medium mb-1">Password</label>
+        <label htmlFor="password" className="mb-1 block font-medium">
+          Password
+        </label>
         <Input
           id="password"
           placeholder="Password"
@@ -85,20 +97,24 @@ export default function UserForm({ onClose }) {
           aria-invalid={!!form.formState.errors.password}
         />
         {form.formState.errors.password && (
-          <p className="text-red-600 text-sm mt-1">{form.formState.errors.password.message}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {form.formState.errors.password.message}
+          </p>
         )}
       </div>
 
       {/* Role Field */}
       <div>
-        <label htmlFor="role" className="block font-medium mb-1">Role</label>
+        <label htmlFor="role" className="mb-1 block font-medium">
+          Role
+        </label>
         <select
           id="role"
-          className="input w-full border rounded px-3 py-2"
+          className="input w-full rounded border px-3 py-2"
           {...form.register("role")}
           aria-invalid={!!form.formState.errors.role}
           value={form.watch("role")}
-          onChange={e => {
+          onChange={(e) => {
             form.setValue("role", e.target.value);
           }}
         >
@@ -106,21 +122,25 @@ export default function UserForm({ onClose }) {
           <option value="HR">HR</option>
         </select>
         {form.formState.errors.role && (
-          <p className="text-red-600 text-sm mt-1">{form.formState.errors.role.message}</p>
+          <p className="mt-1 text-sm text-red-600">
+            {form.formState.errors.role.message}
+          </p>
         )}
       </div>
 
       {/* General Form Error */}
       {form.formState.errors.root && (
-        <div className="text-red-600 text-sm mt-2">{form.formState.errors.root.message}</div>
+        <div className="mt-2 text-sm text-red-600">
+          {form.formState.errors.root.message}
+        </div>
       )}
 
       {/* Actions */}
-      <div className="flex gap-2 mt-4">
+      <div className="mt-4 flex gap-2">
         <Button
           type="submit"
           disabled={addUser.isLoading}
-          className="bg-green-600 text-white px-4 py-1 rounded"
+          className="rounded bg-green-600 px-4 py-1 text-white"
         >
           {addUser.isLoading ? "Saving..." : "Save"}
         </Button>
@@ -128,7 +148,7 @@ export default function UserForm({ onClose }) {
           type="button"
           variant="outline"
           onClick={onClose}
-          className="border px-4 py-1 rounded"
+          className="rounded border px-4 py-1"
         >
           Cancel
         </Button>

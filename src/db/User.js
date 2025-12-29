@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image:{
-    type:String,
-    default:"/profile-placeholder.png"
+  image: {
+    type: String,
+    default: "/profile-placeholder.png",
   },
   email: {
     type: String,
@@ -22,10 +22,10 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["ADMIN", "HR", "EMPLOYEE","USER"],
+    enum: ["ADMIN", "HR", "EMPLOYEE", "USER"],
     default: "user",
   },
-  status:{
+  status: {
     type: String,
     enum: ["active", "inactive"],
     default: "inactive",

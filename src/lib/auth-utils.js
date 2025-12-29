@@ -22,7 +22,7 @@ export const authRequire = async (role = "user") => {
 
 export const unauthRequire = async () => {
   const session = await getSession();
-  if (session&&session?.user) {
+  if (session && session?.user) {
     if (session?.user.role === "admin") {
       redirect("/admin/dashboard");
     } else {

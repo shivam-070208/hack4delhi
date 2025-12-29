@@ -152,8 +152,7 @@ export default function Login() {
             Continue with Google
           </Button>
         </CardContent>
-        <CardFooter>
-        </CardFooter>
+        <CardFooter></CardFooter>
       </Card>
     </div>
   );

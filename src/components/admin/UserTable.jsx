@@ -1,8 +1,7 @@
 export default function UserTable({ users }) {
-
-  console.log(users)
+  console.log(users);
   return (
-    <table className="w-full border rounded">
+    <table className="w-full rounded border">
       <thead className="bg-gray-100">
         <tr>
           <th className="p-2">Name</th>
@@ -18,7 +17,13 @@ export default function UserTable({ users }) {
             <td className="p-2">{u.name}</td>
             <td>{u._id}</td>
             <td>{u.role}</td>
-            <td className={u.status==="active"?"text-accent":"text-destructive"}>{u.status}</td>
+            <td
+              className={
+                u.status === "active" ? "text-accent" : "text-destructive"
+              }
+            >
+              {u.status}
+            </td>
           </tr>
         ))}
       </tbody>

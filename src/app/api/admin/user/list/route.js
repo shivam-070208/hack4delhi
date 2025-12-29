@@ -12,14 +12,14 @@ export async function GET(req) {
     if (!session) {
       return NextResponse.json(
         { error: "Unauthorized: Not authenticated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     if (session.user.role !== "admin") {
       return NextResponse.json(
         { error: "Forbidden: Only Admin can view users" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -39,7 +39,7 @@ export async function GET(req) {
     if (search) {
       const or = [
         { email: { $regex: search, $options: "i" } },
-        { role: { $regex: search, $options: "i",$ne:"admin" } }
+        { role: { $regex: search, $options: "i", $ne: "admin" } },
       ];
 
       if (mongoose.Types.ObjectId.isValid(search)) {
@@ -47,7 +47,6 @@ export async function GET(req) {
       }
       query = { $or: or };
     }
-
 
     const total = await User.countDocuments(query);
     const users = await User.find(query, { password: 0 })
@@ -64,7 +63,7 @@ export async function GET(req) {
         totalPages: Math.ceil(total / limit),
         users: users,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -73,7 +72,7 @@ export async function GET(req) {
         error: "Internal server error",
         message: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
