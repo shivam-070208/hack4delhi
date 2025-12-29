@@ -1,3 +1,7 @@
+/**********************************************
+ *           THIS DB IS NOT NEEDED            *
+ * TODO: DELETE AT LAST IF NOT NEEDED FURTHER *
+ **********************************************/
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 

@@ -15,14 +15,14 @@ export const authRequire = async (role = "user") => {
   if (!session?.user) {
     redirect("/login");
   }
-  if (session?.user.role !== role) {
+  if (session?.user.role.toLowerCase() !== role.toLowerCase()) {
     forbidden();
   }
 };
 
 export const unauthRequire = async () => {
   const session = await getSession();
-  if (session&&session?.user) {
+  if (session && session?.user) {
     if (session?.user.role === "admin") {
       redirect("/admin/dashboard");
     } else {
