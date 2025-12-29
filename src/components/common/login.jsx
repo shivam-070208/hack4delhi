@@ -153,7 +153,6 @@ export default function Login() {
           </Button>
         </CardContent>
         <CardFooter>
-          {/* You can place footer links or additional info here if needed */}
         </CardFooter>
       </Card>
     </div>

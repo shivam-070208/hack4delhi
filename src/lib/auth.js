@@ -36,7 +36,6 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // Allow only users in the database to sign in, no new users created by Google OAuth
       async profile(profile) {
         return {
           id: profile.sub,
@@ -48,10 +47,20 @@ export const authOptions = {
       async signIn({ profile }) {
         if (!profile?.email) return false;
         await connectDB();
-        const user = await User.findOne({
+        let user = await User.findOne({
           email: profile.email.toLowerCase(),
-        }).lean();
-        return !!user;
+        });
+        // If user does not exist, create a new one
+        if (!user) {
+          user = new User({
+            email: profile.email.toLowerCase(),
+            name: profile.name || profile.email.split("@")[0],
+            password: null, // Google-auth users don't have local pwd
+            role: "EMPLOYEE", // Default role or adjust as needed
+          });
+          await user.save();
+        }
+        return true;
       },
     }),
   ],

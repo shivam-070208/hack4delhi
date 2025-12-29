@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import UserForm from "./UserForm";
+import UserForm from "./HrForm";
 
 export default function AddUserModal() {
   const [isOpen, setIsOpen] = useState(false);

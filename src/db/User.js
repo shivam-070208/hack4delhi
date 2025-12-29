@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image:{
+    type:String,
+    default:"/profile-placeholder.png"
+  },
   email: {
     type: String,
     required: true,
@@ -18,13 +22,14 @@ const UserSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ["ADMIN", "HR", "EMPLOYEE","USER"],
     default: "user",
   },
-  // departmentId: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   require:false,
-  //   ref: "Department"
-  // },
+  status:{
+    type: String,
+    enum: ["active", "inactive"],
+    default: "inactive",
+  },
 });
 
 UserSchema.pre("save", async function () {
