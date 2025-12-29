@@ -1,3 +1,3 @@
 /******************************************************************
- * IN THIS ROUTE MAKE A NEW SCHEMA FOR USER DATA STORE DEPARTMENT *
+ * IN THIS ROUTE MAKE A NEW SCHEMA FOR HR DATA STORE DEPARTMENT *
  ******************************************************************/
