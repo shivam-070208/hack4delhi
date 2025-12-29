@@ -52,13 +52,18 @@ export const authOptions = {
         });
         // If user does not exist, create a new one
         if (!user) {
-          user = new User({
-            email: profile.email.toLowerCase(),
-            name: profile.name || profile.email.split("@")[0],
-            password: null, // Google-auth users don't have local pwd
-            role: "EMPLOYEE", // Default role or adjust as needed
-          });
-          await user.save();
+          try {
+            user = new User({
+              email: profile.email.toLowerCase(),
+              name: profile.name || profile.email.split("@")[0],
+              password: null, // Google-auth users don't have local pwd
+              role: "EMPLOYEE", // Default role or adjust as needed
+            });
+            await user.save();
+          } catch (error) {
+            console.error("Failed to create user during Google sign-in:", error);
+            return false;
+          }
         }
         return true;
       },
