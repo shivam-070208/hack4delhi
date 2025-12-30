@@ -61,7 +61,10 @@ export const authOptions = {
             });
             await user.save();
           } catch (error) {
-            console.error("Failed to create user during Google sign-in:", error);
+            console.error(
+              "Failed to create user during Google sign-in:",
+              error,
+            );
             return false;
           }
         }
