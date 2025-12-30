@@ -1,14 +1,14 @@
+/**********************************************
+ *           THIS DB IS NOT NEEDED            *
+ * TODO: DELETE AT LAST IF NOT NEEDED FURTHER *
+ **********************************************/
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const UserSchema = new mongoose.Schema({
+const HRSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-  },
-  image: {
-    type: String,
-    default: "/profile-placeholder.png",
   },
   email: {
     type: String,
@@ -17,22 +17,49 @@ const UserSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
+  employeeId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   password: {
     type: String,
+    required: true,
   },
-  role: {
+  department: {
     type: String,
-    enum: ["ADMIN", "HR", "EMPLOYEE", "USER"],
-    default: "USER",
+    required: true,
+  },
+  designation: {
+    type: String,
+    default: "HR Manager",
+  },
+  phone: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  joiningDate: {
+    type: Date,
+    default: Date.now,
   },
   status: {
     type: String,
     enum: ["active", "inactive"],
-    default: "inactive",
+    default: "active",
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
-UserSchema.pre("save", async function () {
+HRSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   if (this.password) {
     const salt = await bcrypt.genSalt(10);
@@ -40,7 +67,7 @@ UserSchema.pre("save", async function () {
   }
 });
 
-UserSchema.pre("findOneAndUpdate", async function () {
+HRSchema.pre("findOneAndUpdate", async function () {
   const update = this.getUpdate();
   if (!update) return;
   const pwd = update.password || (update.$set && update.$set.password);
@@ -53,4 +80,4 @@ UserSchema.pre("findOneAndUpdate", async function () {
   }
 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.HR || mongoose.model("HR", HRSchema);

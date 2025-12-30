@@ -15,7 +15,7 @@ export const authRequire = async (role = "user") => {
   if (!session?.user) {
     redirect("/login");
   }
-  if (session?.user.role !== role) {
+  if (session?.user.role.toLowerCase() !== role.toLowerCase()) {
     forbidden();
   }
 };

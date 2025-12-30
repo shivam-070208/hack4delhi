@@ -18,7 +18,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   Tooltip,
-  Legend,
+  Legend
 );
 
 const DATA = {
@@ -31,16 +31,20 @@ export default function DashboardChart() {
   const [type, setType] = useState("employee");
 
   return (
-    <div className="bg-card rounded-xl p-4 shadow">
+    <div className="bg-card rounded-xl shadow p-4">
+
       {/* TOGGLE BUTTONS */}
-      <div className="mb-3 flex gap-2">
+      <div className="flex gap-2 mb-3">
         {["employee", "hr", "salary"].map((item) => (
           <button
             key={item}
             onClick={() => setType(item)}
-            className={`rounded px-3 py-1 text-sm ${
-              type === item ? "bg-primary text-primary-foreground" : "bg-muted"
-            }`}
+            className={`px-3 py-1 text-sm rounded
+              ${
+                type === item
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted"
+              }`}
           >
             {item.toUpperCase()}
           </button>
