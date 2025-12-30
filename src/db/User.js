@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -31,7 +30,6 @@ const UserSchema = new mongoose.Schema({
     default: "inactive",
   },
 });
-
 UserSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   if (this.password) {
@@ -39,7 +37,6 @@ UserSchema.pre("save", async function () {
     this.password = await bcrypt.hash(this.password, salt);
   }
 });
-
 UserSchema.pre("findOneAndUpdate", async function () {
   const update = this.getUpdate();
   if (!update) return;
@@ -52,5 +49,4 @@ UserSchema.pre("findOneAndUpdate", async function () {
     this.setUpdate(update);
   }
 });
-
 export default mongoose.models.User || mongoose.model("User", UserSchema);

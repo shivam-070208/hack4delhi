@@ -3,18 +3,15 @@ import User from "@/db/User";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { NextResponse } from "next/server";
-
 export async function POST(req) {
   try {
     const session = await getServerSession(authOptions);
-
     if (!session) {
       return NextResponse.json(
         { error: "Unauthorized: Not authenticated" },
         { status: 401 },
       );
     }
-
     if (session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Forbidden: Only Admin can add HR users" },
