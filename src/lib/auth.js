@@ -61,7 +61,10 @@ export const authOptions = {
             });
             await user.save();
           } catch (error) {
-            console.error("Failed to create user during Google sign-in:", error);
+            console.error(
+              "Failed to create user during Google sign-in:",
+              error,
+            );
             return false;
           }
         }
@@ -87,7 +90,6 @@ export const authOptions = {
       }
       return token;
     },
-   
 
     async session({ session, token }) {
       session.user.role = token.role;

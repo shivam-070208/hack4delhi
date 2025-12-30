@@ -11,12 +11,9 @@ import { authOptions } from "@/lib/auth";
 
 export async function GET() {
   try {
-     const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     if (!session) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 },
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
     if (session.user.role !== "ADMIN") {
       return NextResponse.json(
@@ -26,25 +23,20 @@ export async function GET() {
     }
     await connectDB();
     const today = new Date();
-    const monthStart = new Date(
-      today.getFullYear(),
-      today.getMonth(),
-      1,
-    );
-    //total employee per month 
+    const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+    //total employee per month
     const totalWorkingEmployees = await Employee.countDocuments({
       employmentStatus: "active",
       createdAt: { $gte: monthStart },
     });
-      //total HRs per month
+    //total HRs per month
     const totalWorkingHR = await HR.countDocuments({
       status: "active",
       createdAt: { $gte: monthStart },
     });
-     //total employee+hrs working this month
-    const totalWorkingPeople =
-      totalWorkingEmployees + totalWorkingHR;
-    //total salary disbursed this month department wise 
+    //total employee+hrs working this month
+    const totalWorkingPeople = totalWorkingEmployees + totalWorkingHR;
+    //total salary disbursed this month department wise
     const totalSalaryByDept = await Employee.aggregate([
       {
         $match: {
@@ -82,7 +74,7 @@ export async function GET() {
         },
       },
     ]);
-     //total employee on leave per department 
+    //total employee on leave per department
     const employeesOnLeaveByDept = await Employee.aggregate([
       {
         $match: {
@@ -113,14 +105,13 @@ export async function GET() {
           totalWorkingPeople,
           totalSalaryByDept,
           totalEmployeeByDept,
-          employeesOnLeaveByDept
+          employeesOnLeaveByDept,
         },
       },
       { status: 200 },
     );
-  } 
-  // sending error if data fetching is not done successfully
-  catch (error) {
+  } catch (error) {
+    // sending error if data fetching is not done successfully
     console.error("Admin dashboard data fetch not successfull:", error);
     return NextResponse.json(
       {
