@@ -27,7 +27,6 @@ const EmployeeSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-
     employmentStatus: {
       type: String,
       enum: ["active", "on-leave", "resigned"],
@@ -36,6 +35,5 @@ const EmployeeSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-
 export default mongoose.models.Employee ||
   mongoose.model("Employee", EmployeeSchema);
