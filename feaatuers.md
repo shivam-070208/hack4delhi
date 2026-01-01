@@ -126,12 +126,6 @@ To build a secure, role-based, and scalable HRMS MVP that efficiently manages:
 
 ## 🗂️ Grievance Redressal System
 
-### Pages
-
-- `/grievances`
-- `/grievances/new`
-- `/grievances/[id]`
-
 ### Features
 
 - Grievance filing by employees

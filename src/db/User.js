@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ["ADMIN", "HR", "EMPLOYEE", "USER"],
     default: "USER",
+    set: (v) => (v ? v.toUpperCase() : v),
   },
   status: {
     type: String,

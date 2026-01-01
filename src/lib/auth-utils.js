@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./auth";
-import { forbidden, redirect } from "next/navigation";
+import { forbidden, unauthorized } from "next/navigation";
 
 export const getSession = async () => {
   try {
@@ -13,7 +13,7 @@ export const getSession = async () => {
 export const authRequire = async (role = "user") => {
   const session = (await getSession()) || {};
   if (!session?.user) {
-    redirect("/login");
+    unauthorized();
   }
   if (session?.user.role.toLowerCase() !== role.toLowerCase()) {
     forbidden();
