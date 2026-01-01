@@ -4,11 +4,9 @@ import Employee from "@/db/Employee";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
-
 export async function PUT(req) {
   try {
     const session = await getServerSession(authOptions);
-
 
     if (!session) {
       return NextResponse.json(
@@ -26,14 +24,21 @@ export async function PUT(req) {
 
     await connectDB();
     const body = await req.json();
-    const { userId, department, designation, joiningDate, salary, employmentStatus } = body;
-    
+    const {
+      userId,
+      department,
+      designation,
+      joiningDate,
+      salary,
+      employmentStatus,
+    } = body;
+
     if (!userId) {
       return NextResponse.json(
         { error: "userId is required" },
         { status: 400 },
       );
-    }   
+    }
 
     const updateData = {};
     if (department) updateData.department = department;
@@ -42,7 +47,9 @@ export async function PUT(req) {
     if (salary) updateData.salary = salary;
     if (employmentStatus) updateData.employmentStatus = employmentStatus;
 
-    const employee = await Employee.findOneAndUpdate({ userId }, updateData, { new: true });
+    const employee = await Employee.findOneAndUpdate({ userId }, updateData, {
+      new: true,
+    });
     if (!employee) {
       return NextResponse.json(
         { error: "Employee not found" },
@@ -50,17 +57,21 @@ export async function PUT(req) {
       );
     }
 
-    return NextResponse.json({ message: "Employee updated successfully",
-         employee: {
-            id: employee._id,
-            userId: employee.userId,
-            department: employee.department,
-            designation: employee.designation,
-            joiningDate: employee.joiningDate,
-            salary: employee.salary,
-            employmentStatus: employee.employmentStatus,
-         }
-        }, { status: 200 });
+    return NextResponse.json(
+      {
+        message: "Employee updated successfully",
+        employee: {
+          id: employee._id,
+          userId: employee.userId,
+          department: employee.department,
+          designation: employee.designation,
+          joiningDate: employee.joiningDate,
+          salary: employee.salary,
+          employmentStatus: employee.employmentStatus,
+        },
+      },
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },
@@ -68,4 +79,3 @@ export async function PUT(req) {
     );
   }
 }
-

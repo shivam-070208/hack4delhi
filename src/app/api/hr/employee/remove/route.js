@@ -4,11 +4,9 @@ import Employee from "@/db/Employee";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 
-
 export async function DELETE(req) {
   try {
     const session = await getServerSession(authOptions);
-
 
     if (!session) {
       return NextResponse.json(
@@ -27,13 +25,13 @@ export async function DELETE(req) {
     await connectDB();
     const body = await req.json();
     const { userId } = body;
-    
+
     if (!userId) {
       return NextResponse.json(
         { error: "userId is required" },
         { status: 400 },
       );
-    }   
+    }
 
     const employee = await Employee.findOneAndDelete({ userId });
     if (!employee) {
@@ -43,17 +41,21 @@ export async function DELETE(req) {
       );
     }
 
-    return NextResponse.json({ message: "Employee removed successfully",
-         employee: {
-            id: employee._id,
-            userId: employee.userId,
-            department: employee.department,
-            designation: employee.designation,
-            joiningDate: employee.joiningDate,
-            salary: employee.salary,
-            employmentStatus: employee.employmentStatus,
-         }
-        }, { status: 200 });
+    return NextResponse.json(
+      {
+        message: "Employee removed successfully",
+        employee: {
+          id: employee._id,
+          userId: employee.userId,
+          department: employee.department,
+          designation: employee.designation,
+          joiningDate: employee.joiningDate,
+          salary: employee.salary,
+          employmentStatus: employee.employmentStatus,
+        },
+      },
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },
