@@ -44,7 +44,6 @@ export const authOptions = {
           image: profile.picture,
         };
       },
-
     }),
   ],
   session: {
@@ -61,7 +60,7 @@ export const authOptions = {
         }).lean();
         if (dbUser) {
           token.role = dbUser.role;
-          token.id=dbUser._id;
+          token.id = dbUser._id;
         }
       }
       return token;

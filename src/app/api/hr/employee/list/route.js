@@ -17,7 +17,10 @@ export async function GET() {
     if (session.user.id) {
       hr = await HR.findOne({ hrId: session.user.id }).lean();
     } else if (session.user.email) {
-      const user = await HR.db.model("User").findOne({ email: session.user.email }).lean();
+      const user = await HR.db
+        .model("User")
+        .findOne({ email: session.user.email })
+        .lean();
       const userId = user?._id;
       hr = await HR.findOne({ hrId: userId }).lean();
     }

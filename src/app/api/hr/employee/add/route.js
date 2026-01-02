@@ -17,14 +17,14 @@ export async function POST(req) {
     if (!session) {
       return NextResponse.json(
         { error: "Unauthorized: Not authenticated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     if (session.user.role !== "HR") {
       return NextResponse.json(
         { error: "Forbidden: Only HR can add Employees" },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -33,14 +33,13 @@ export async function POST(req) {
     // Remove department from destructure; fetch from current HR model
     const { name, email, password, designation, salary } = body;
 
-
     const hrId = session.user.id;
     const hrEmployeeRecord = await HR.findOne({ hrId: hrId });
 
     if (!hrEmployeeRecord) {
       return NextResponse.json(
         { error: "HR employee record not found for department reference" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const department = hrEmployeeRecord.department;
@@ -48,7 +47,7 @@ export async function POST(req) {
     if (!name || !email || !password || !designation || !salary) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,7 +60,7 @@ export async function POST(req) {
       mongoSession.endSession();
       return NextResponse.json(
         { error: "User with this email already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -73,20 +72,22 @@ export async function POST(req) {
           password, // hash this in production!!
           role: "employee",
           status: "active",
-        }
+        },
       ],
-      { session: mongoSession }
+      { session: mongoSession },
     );
 
     const createdUser = newUser[0];
 
-    const existingEmployee = await Employee.findOne({ userId: createdUser._id }).session(mongoSession);
+    const existingEmployee = await Employee.findOne({
+      userId: createdUser._id,
+    }).session(mongoSession);
     if (existingEmployee) {
       await mongoSession.abortTransaction();
       mongoSession.endSession();
       return NextResponse.json(
         { error: "Employee already exists" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -100,9 +101,9 @@ export async function POST(req) {
           joiningDate: Date.now(),
           salary,
           employmentStatus: "active",
-        }
+        },
       ],
-      { session: mongoSession }
+      { session: mongoSession },
     );
 
     await mongoSession.commitTransaction();
@@ -126,9 +127,9 @@ export async function POST(req) {
           email: createdUser.email,
           role: createdUser.role,
           status: createdUser.status,
-        }
+        },
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     if (mongoSession) {
@@ -139,7 +140,7 @@ export async function POST(req) {
     }
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

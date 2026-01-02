@@ -54,11 +54,11 @@ const menuItems = [
     href: "/hr/salary",
     icon: IndianRupee,
   },
-{
-  name:"Attendance Reports",
-  href:"/hr/dashboard/attendance",
-  icon: BarChart3,
-}
+  {
+    name: "Attendance Reports",
+    href: "/hr/dashboard/attendance",
+    icon: BarChart3,
+  },
 ];
 
 export default function HRSidebar() {

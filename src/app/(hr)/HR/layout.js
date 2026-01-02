@@ -2,7 +2,7 @@ import HRSidebar, { HRSidebarProvider } from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import { authRequire } from "@/lib/auth-utils";
 export default async function HRLayout({ children }) {
-  await authRequire("hr")
+  await authRequire("hr");
   return (
     <div className="flex">
       <HRSidebarProvider>

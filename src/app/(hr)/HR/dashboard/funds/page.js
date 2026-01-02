@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import FundsRequestForm from "@/components/hr/FundsRequestForm";
 import FundsRequestList from "@/components/hr/FundsRequestList";

@@ -50,14 +50,14 @@ export default function EmployeeForm({ onClose }) {
         onError: (err) => {
           setError(err.message || "Error adding employee");
         },
-      }
+      },
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block mb-1 text-sm">Name</label>
+        <label className="mb-1 block text-sm">Name</label>
         <input
           name="name"
           className="w-full rounded border px-3 py-2"
@@ -67,7 +67,7 @@ export default function EmployeeForm({ onClose }) {
         />
       </div>
       <div>
-        <label className="block mb-1 text-sm">Email</label>
+        <label className="mb-1 block text-sm">Email</label>
         <input
           name="email"
           type="email"
@@ -78,7 +78,7 @@ export default function EmployeeForm({ onClose }) {
         />
       </div>
       <div>
-        <label className="block mb-1 text-sm">Password</label>
+        <label className="mb-1 block text-sm">Password</label>
         <input
           name="password"
           type="password"
@@ -89,7 +89,7 @@ export default function EmployeeForm({ onClose }) {
         />
       </div>
       <div>
-        <label className="block mb-1 text-sm">Designation</label>
+        <label className="mb-1 block text-sm">Designation</label>
         <input
           name="designation"
           className="w-full rounded border px-3 py-2"
@@ -99,7 +99,7 @@ export default function EmployeeForm({ onClose }) {
         />
       </div>
       <div>
-        <label className="block mb-1 text-sm">Salary</label>
+        <label className="mb-1 block text-sm">Salary</label>
         <input
           name="salary"
           type="number"
@@ -110,7 +110,7 @@ export default function EmployeeForm({ onClose }) {
           required
         />
       </div>
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-sm text-red-500">{error}</div>}
       <div className="flex justify-end gap-2 pt-2">
         <button
           type="button"

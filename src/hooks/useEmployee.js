@@ -16,9 +16,6 @@ export const useEmployee = (id) =>
     },
   });
 
-
-
-
 export const useAddEmployee = () =>
   useMutation({
     mutationFn: async (employeeData) => {

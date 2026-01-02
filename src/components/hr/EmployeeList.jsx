@@ -22,18 +22,18 @@ export default function EmployeeList() {
     <div className="p-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-semibold text-gray-900">
-          Employees
-        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900">Employees</h2>
         <AddEmployeeModal />
       </div>
 
-      <p className="mb-6 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mb-6 text-sm">
         View and manage employees with role and profile access.
       </p>
 
       {isLoading && (
-        <div className="text-center text-sm text-gray-500">Loading employees…</div>
+        <div className="text-center text-sm text-gray-500">
+          Loading employees…
+        </div>
       )}
 
       {isError && (
@@ -83,7 +83,6 @@ export default function EmployeeList() {
                   {e.designation}
                 </span>
               </CardContent>
-
 
               <CardAction className="flex justify-end px-6 pb-4">
                 <Link href={`/hr/dashboard/employees/${e.userId._id}`}>

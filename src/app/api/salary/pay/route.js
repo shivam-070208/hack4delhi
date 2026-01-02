@@ -71,8 +71,6 @@ export async function POST(req) {
       );
     }
 
-   
-
     // Check HR wallet balance
     const hrWallet = await Wallet.findOne({ ownerId: hrId }).lean();
     if (!hrWallet || hrWallet.balance < amount) {
@@ -103,7 +101,7 @@ export async function POST(req) {
     try {
       tx = await SalaryTransaction.create({
         hrId,
-        employeeId:employee.userId,
+        employeeId: employee.userId,
         amount,
         month,
         status: "COMPLETED",

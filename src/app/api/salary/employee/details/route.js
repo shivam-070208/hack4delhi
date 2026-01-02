@@ -22,8 +22,7 @@ export async function GET(req) {
     }
 
     // Fetch employee by Employee model ID
-    const employee = await Employee.findById(employeeId)
-      .lean();
+    const employee = await Employee.findById(employeeId).lean();
 
     if (!employee) {
       return NextResponse.json(
@@ -45,7 +44,7 @@ export async function GET(req) {
     return NextResponse.json(
       {
         _id: user._id,
-        image:user.image,
+        image: user.image,
         name: user.name,
         email: user.email,
         salary: employee.salary,
