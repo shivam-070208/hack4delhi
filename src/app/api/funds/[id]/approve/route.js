@@ -10,7 +10,7 @@ export async function POST(req, { params }) {
     if (!session?.user || session.user.role !== "ADMIN") {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
-    const id = params.id;
+    const {id} = await params;
     const fr = await FundRequest.findById(id);
     if (!fr) return NextResponse.json({ error: "Not found" }, { status: 404 });
     if (fr.status !== "PENDING")

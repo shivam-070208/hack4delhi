@@ -54,7 +54,11 @@ export default function Sidebar() {
       href: "/admin/dashboard/departments",
       icon: UserSquare2,
     },
-    { name: "Settings", href: "/admin/dashboard/settings", icon: Settings },
+    {
+      name: "Funds",
+      href: "/admin/dashboard/funds",
+      icon: UserSquare2,
+    },
   ];
 
   return (

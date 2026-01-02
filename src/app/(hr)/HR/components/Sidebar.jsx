@@ -14,6 +14,7 @@ import {
   LogOut,
   X as CloseIcon,
 } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 const HRSidebarContext = createContext();
 
@@ -42,28 +43,22 @@ export function useHRSidebar() {
 const menuItems = [
   { name: "Dashboard", href: "/hr/dashboard", icon: UserCircle },
   { name: "Employee Management", href: "/hr/dashboard/employees", icon: Users },
-  { name: "Recruitment", href: "/hr/dashboard/recruitment", icon: Briefcase },
-  { name: "Attendance", href: "/hr/dashboard/attendance", icon: CalendarCheck },
+
   {
-    name: "Transfer & Posting",
-    href: "/hr/dashboard/transfer-posting",
-    icon: Shuffle,
-  },
-  {
-    name: "Salary Management",
-    href: "/hr/dashboard/salary",
+    name: "Fund Requests",
+    href: "/hr/dashboard/funds",
     icon: IndianRupee,
   },
   {
-    name: "Reports & Analytics",
-    href: "/hr/dashboard/reports",
-    icon: BarChart3,
+    name: "Salary Management",
+    href: "/hr/salary",
+    icon: IndianRupee,
   },
-  {
-    name: "Grievance Redressal",
-    href: "/hr/dashboard/grievance",
-    icon: MessageSquareWarning,
-  },
+{
+  name:"Attendance Reports",
+  href:"/hr/dashboard/attendance",
+  icon: BarChart3,
+}
 ];
 
 export default function HRSidebar() {
@@ -137,7 +132,7 @@ export default function HRSidebar() {
         <div className="mt-auto border-t border-slate-100 p-4">
           <button
             className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-500 transition-colors hover:bg-red-50 hover:text-red-600"
-            // onClick={signOut} // Uncomment if using next-auth
+            onClick={signOut}
             type="button"
           >
             <LogOut className="h-5 w-5" />
