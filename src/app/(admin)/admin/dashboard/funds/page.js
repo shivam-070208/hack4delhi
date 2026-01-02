@@ -1,6 +1,6 @@
-/*******************************************************
- * THIS PAGE IS TO MANAGE ALL FUNDS REQUESTED AND PASS *
- *******************************************************/
-export default function page(){
-    return (<div>hdhdhd</div>)
+import React from "react";
+import AdminFundApproval from "@/components/admin/FundApprovalManager";
+
+export default function AdminFundsPage() {
+  return <AdminFundApproval />;
 }

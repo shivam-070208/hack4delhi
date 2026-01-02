@@ -44,32 +44,6 @@ export const authOptions = {
           image: profile.picture,
         };
       },
-      async signIn({ profile }) {
-        if (!profile?.email) return false;
-        await connectDB();
-        let user = await User.findOne({
-          email: profile.email.toLowerCase(),
-        });
-        // If user does not exist, create a new one
-        if (!user) {
-          try {
-            user = new User({
-              email: profile.email.toLowerCase(),
-              name: profile.name || profile.email.split("@")[0],
-              password: null, // Google-auth users don't have local pwd
-              role: "EMPLOYEE", // Default role or adjust as needed
-            });
-            await user.save();
-          } catch (error) {
-            console.error(
-              "Failed to create user during Google sign-in:",
-              error,
-            );
-            return false;
-          }
-        }
-        return true;
-      },
     }),
   ],
   session: {
@@ -86,6 +60,7 @@ export const authOptions = {
         }).lean();
         if (dbUser) {
           token.role = dbUser.role;
+          token.id = dbUser._id;
         }
       }
       return token;
@@ -93,6 +68,8 @@ export const authOptions = {
 
     async session({ session, token }) {
       session.user.role = token.role;
+      session.user.id = token.id;
+
       return session;
     },
   },

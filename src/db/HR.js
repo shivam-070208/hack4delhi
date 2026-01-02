@@ -11,7 +11,6 @@ const HRSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Department",
     required: true,
-    unique: true,
   },
   joiningDate: {
     type: Date,

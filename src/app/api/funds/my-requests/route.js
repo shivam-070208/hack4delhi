@@ -3,22 +3,19 @@ import { authOptions } from "@/lib/auth";
 import FundRequest from "@/db/FundRequest";
 import { NextResponse } from "next/server";
 
-export async function POST(req, { params }) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session?.user || session.user.role !== "ADMIN") {
+
+    if (!session?.user || session.user.role !== "HR") {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
-    const { id } = await params;
-    const fr = await FundRequest.findById(id);
-    if (!fr) return NextResponse.json({ error: "Not found" }, { status: 404 });
-    if (fr.status !== "PENDING")
-      return NextResponse.json({ error: "Already processed" }, { status: 400 });
 
-    fr.status = "REJECTED";
-    await fr.save();
+    const requests = await FundRequest.find({ hrId: session.user.id })
+      .sort({ createdAt: -1 })
+      .lean();
 
-    return NextResponse.json(fr, { status: 200 });
+    return NextResponse.json(requests, { status: 200 });
   } catch (err) {
     console.error(err);
     return NextResponse.json(
