@@ -8,8 +8,7 @@ function getInitials(name) {
   const parts = name.split(" ");
   if (parts.length === 1) return parts[0][0] || "U";
   return (
-    (parts[0][0] || "") +
-    (parts[parts.length - 1][0] || "")
+    (parts[0][0] || "") + (parts[parts.length - 1][0] || "")
   ).toUpperCase();
 }
 
@@ -51,9 +50,7 @@ export default function Topbar() {
             <p className="text-sm leading-none font-semibold text-slate-900">
               {userName}
             </p>
-            <p className="mt-1 text-xs text-slate-500">
-              {userRole}
-            </p>
+            <p className="mt-1 text-xs text-slate-500">{userRole}</p>
           </div>
 
           <div className="relative">

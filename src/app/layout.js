@@ -3,7 +3,7 @@ import "./globals.css";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "sonner";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import AuthProvider from "@/components/providers/auth-provider"
+import AuthProvider from "@/components/providers/auth-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,8 +26,8 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-        <Toaster />
-        <QueryProvider>{children}</QueryProvider>
+          <Toaster />
+          <QueryProvider>{children}</QueryProvider>
         </AuthProvider>
       </body>
     </html>
