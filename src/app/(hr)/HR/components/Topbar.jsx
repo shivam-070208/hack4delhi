@@ -1,8 +1,13 @@
 "use client";
 import { Bell, MenuIcon, ChevronDown } from "lucide-react";
 import { useHRSidebar } from "./Sidebar";
+import { useSession } from "next-auth/react";
 
 export default function Topbar() {
+  const { data: session } = useSession();
+  const name = session?.user?.name;
+  const email = session?.user?.email;
+  const role = session?.user?.role || "HR User";
   const { setOpen } = useHRSidebar();
 
   return (
@@ -26,12 +31,13 @@ export default function Topbar() {
         <div className="mx-2 h-8 w-[1px] bg-slate-200"></div>
 
         {/* User Profile */}
+
         <div className="group flex cursor-pointer items-center gap-3">
           <div className="hidden text-right sm:block">
             <p className="text-sm leading-none font-semibold text-slate-900">
-              Alex Rivera
+              {name || email}
             </p>
-            <p className="mt-1 text-xs text-slate-500">Super Admin</p>
+            <p className="mt-1 text-xs text-slate-500">{role}</p>
           </div>
 
           <div className="relative">

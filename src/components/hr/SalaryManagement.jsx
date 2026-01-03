@@ -43,7 +43,7 @@ function EmployeePayRow({
         <div className="flex items-center gap-3">
           <Image
             src={employee.image || "/profile-placeholder.png"}
-            alt={employee.name}
+            alt={employee.name||"profileimage"}
             width="100"
             height="100"
             className="h-12 w-12 rounded-full border-2 border-slate-300 object-cover"
@@ -163,7 +163,7 @@ export default function SalaryManagement() {
                 Your Wallet Balance
               </p>
               <p className="text-4xl font-bold text-indigo-900">
-                ₹{formatAmount(walletData.balance || 0)}
+                {formatAmount(walletData.balance || 0)}
               </p>
             </div>
             <DollarSign className="h-10 w-10 text-indigo-600" />

@@ -4,6 +4,15 @@ const nextConfig = {
   experimental: {
     authInterrupts: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/login", 
+        permanent: false,
+      },
+    ];
+  }
 };
 
 export default nextConfig;

@@ -5,7 +5,7 @@ export function useSalaryTransactions(month = null) {
     queryKey: ["salary-transactions", { month }],
     queryFn: async () => {
       const query = month ? `?month=${month}` : "";
-      const response = await fetch(`/api/salary/pay${query}`);
+      const response = await fetch(`/api/salary/paid${query}`);
       if (!response.ok) throw new Error("Failed to fetch salary transactions");
       return response.json();
     },
