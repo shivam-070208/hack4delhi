@@ -180,11 +180,19 @@
   body {
     @apply bg-background text-foreground;
   }
+  .blur-in {
+    @apply opacity-50 blur-xl;
+    animation: blurIn 0.4s 1.5s ease forwards;
+  }
 }
 
-.input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+@keyframes blurIn {
+  0% {
+    opacity: 0.5;
+    filter: blur(24px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
 }

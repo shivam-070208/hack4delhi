@@ -1,7 +1,11 @@
+"use client";
 import StatCard from "@/components/admin/dashboard/StatCard";
 import DashboardChart from "@/components/admin/dashboard/DashboardChart";
+import { useAdminDashboard } from "../../../../hooks/useAdmin";
 
 export default function AdminDashboard() {
+  const { data } = useAdminDashboard();
+  const dashboardData = data?.data;
   return (
     <div className="min-h-screen space-y-8 bg-[#f8fafc] p-8 text-slate-800">
       <header className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
@@ -13,30 +17,50 @@ export default function AdminDashboard() {
             Welcome back, here is what&apos;s happening today.
           </p>
         </div>
-        <button className="rounded-lg bg-indigo-600 px-4 py-2 font-medium text-white shadow-md shadow-indigo-200 transition-all hover:bg-indigo-700">
-          Download Report
-        </button>
       </header>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           title="Total Employees"
-          value="120"
-          trend="+4%"
+          value={`${dashboardData?.totalWorkingEmployees ?? 0}`}
+          trend={
+            dashboardData?.totalWorkingEmployeesTrend
+              ? dashboardData.totalWorkingEmployeesTrend
+              : "+0%"
+          }
           icon="users"
         />
         <StatCard
           title="HR Department"
-          value="15"
-          trend="Stable"
+          value={`${dashboardData?.totalHR ?? 0}`}
+          trend={
+            dashboardData?.totalHRTrend ? dashboardData.totalHRTrend : "Stable"
+          }
           icon="briefcase"
         />
         <StatCard
           title="Salary Disbursed"
-          value="₹25L"
-          trend="+12%"
+          value={
+            dashboardData?.totalSalaryDisbursed != null
+              ? `₹${dashboardData.totalSalaryDisbursed}L`
+              : "₹0L"
+          }
+          trend={
+            dashboardData?.salaryDisbursedTrend
+              ? dashboardData.salaryDisbursedTrend
+              : "+0%"
+          }
           icon="wallet"
         />
-        <StatCard title="Active Now" value="98" trend="Live" icon="pulse" />
+        <StatCard
+          title="Active Now"
+          value={`${dashboardData?.activeNow ?? 0}`}
+          trend={
+            dashboardData?.activeNowTrend
+              ? dashboardData.activeNowTrend
+              : "Live"
+          }
+          icon="pulse"
+        />
       </div>
 
       {/* CHART SECTION */}

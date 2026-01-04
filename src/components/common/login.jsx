@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import {
 } from "@/components/ui/card";
 
 export default function Login() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -50,16 +52,17 @@ export default function Login() {
       setFormError(result.error);
     } else if (!result?.ok) {
       setFormError("Login failed");
+    } else {
+      router.push("/dashboard");
     }
   };
 
   const handleGoogleLogin = async () => {
     try {
       setLoading(true);
-      await signIn("google");
+      await signIn("google", { callbackUrl: "/dashboard" });
     } catch (err) {
       setFormError(err?.message || "Something Went Wrong");
-    } finally {
       setLoading(false);
     }
   };

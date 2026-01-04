@@ -1,5 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
+export const useAdminDashboard = () =>
+  useQuery({
+    queryKey: ["admin-dashboard"],
+    queryFn: async () => {
+      const res = await fetch(`/api/admin/dashboard/fetch`, {
+        method: "GET",
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch user list");
+      }
+      return res.json();
+    },
+    keepPreviousData: true,
+  });
 export const useAdminList = ({ search = "", page = 1, limit = 10 } = {}) =>
   useQuery({
     queryKey: ["admin-users", { search, page, limit }],
