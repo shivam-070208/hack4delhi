@@ -37,7 +37,7 @@ export async function GET() {
     if (session.user.role !== "ADMIN") {
       return NextResponse.json(
         { error: "Forbidden: Admin access only" },
-        { status: 403 }
+        { status: 403 },
       );
     }
     await connectDB();
@@ -82,7 +82,11 @@ export async function GET() {
     });
 
     // Trends
-    const prevMonthStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    const prevMonthStart = new Date(
+      today.getFullYear(),
+      today.getMonth() - 1,
+      1,
+    );
     const prevMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0);
 
     const prevTotalWorkingEmployees = await Employee.countDocuments({
@@ -132,12 +136,12 @@ export async function GET() {
 
     const totalWorkingEmployeesTrend = calcTrend(
       totalWorkingEmployees,
-      prevTotalWorkingEmployees
+      prevTotalWorkingEmployees,
     );
     const totalHRTrend = calcTrend(totalHR, prevTotalHR, false);
     const salaryDisbursedTrend = calcTrend(
       totalSalaryDisbursed,
-      prevTotalSalaryDisbursed
+      prevTotalSalaryDisbursed,
     );
 
     // Dashboard Chart Data (for @DashboardChart.jsx)
@@ -153,7 +157,7 @@ export async function GET() {
             $gte: new Date(
               today.getFullYear(),
               today.getMonth() - (numMonths - 1),
-              1
+              1,
             ),
           },
         },
@@ -177,7 +181,7 @@ export async function GET() {
             $gte: new Date(
               today.getFullYear(),
               today.getMonth() - (numMonths - 1),
-              1
+              1,
             ),
           },
         },
@@ -201,7 +205,7 @@ export async function GET() {
             $gte: new Date(
               today.getFullYear(),
               today.getMonth() - (numMonths - 1),
-              1
+              1,
             ),
           },
         },
@@ -234,7 +238,7 @@ export async function GET() {
       employee: months.map((label) => empDict[label] || 0),
       hr: months.map((label) => hrDict[label] || 0),
       salary: months.map((label) =>
-        salDict[label] ? Math.round(salDict[label] / 100000) : 0
+        salDict[label] ? Math.round(salDict[label] / 100000) : 0,
       ),
     };
 
@@ -252,7 +256,7 @@ export async function GET() {
           chartData, // For DashboardChart.jsx
         },
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Admin dashboard data fetch failed:", error);
@@ -261,7 +265,7 @@ export async function GET() {
         success: false,
         message: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -13,7 +13,7 @@ export const getSession = async () => {
 export const authRequire = async (role = "user") => {
   const session = (await getSession()) || {};
   if (!session?.user) {
-   redirect("/login");
+    redirect("/login");
   }
 
   if (session?.user.role.toLowerCase() !== role.toLowerCase()) {

@@ -8,7 +8,7 @@ import SalaryTransaction from "@/db/SalaryTransaction";
 
 // Dummy transaction fetch from DB, actual implementation may vary
 async function getSalaryTransactions(month) {
-await connectDB()
+  await connectDB();
   const filter = month ? { month } : {};
   const transactions = await SalaryTransaction.find(filter).lean();
   return transactions.map((t) => ({ ...t, _id: t._id.toString() }));
@@ -27,10 +27,10 @@ export async function GET(req) {
     const transactions = await getSalaryTransactions(month);
     return NextResponse.json(transactions || []);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch salary transactions" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

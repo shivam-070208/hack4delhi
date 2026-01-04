@@ -53,7 +53,6 @@ export default function Login() {
     } else if (!result?.ok) {
       setFormError("Login failed");
     } else {
-
       router.push("/dashboard");
     }
   };

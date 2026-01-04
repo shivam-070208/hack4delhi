@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import StatCard from "@/components/admin/dashboard/StatCard";
 import DashboardChart from "@/components/admin/dashboard/DashboardChart";
 import { useAdminDashboard } from "../../../../hooks/useAdmin";
 
 export default function AdminDashboard() {
-  const {data} = useAdminDashboard()
-  const dashboardData = data?.data
+  const { data } = useAdminDashboard();
+  const dashboardData = data?.data;
   return (
     <div className="min-h-screen space-y-8 bg-[#f8fafc] p-8 text-slate-800">
       <header className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
@@ -33,9 +33,7 @@ export default function AdminDashboard() {
           title="HR Department"
           value={`${dashboardData?.totalHR ?? 0}`}
           trend={
-            dashboardData?.totalHRTrend
-              ? dashboardData.totalHRTrend
-              : "Stable"
+            dashboardData?.totalHRTrend ? dashboardData.totalHRTrend : "Stable"
           }
           icon="briefcase"
         />
@@ -56,7 +54,11 @@ export default function AdminDashboard() {
         <StatCard
           title="Active Now"
           value={`${dashboardData?.activeNow ?? 0}`}
-          trend={dashboardData?.activeNowTrend ? dashboardData.activeNowTrend : "Live"}
+          trend={
+            dashboardData?.activeNowTrend
+              ? dashboardData.activeNowTrend
+              : "Live"
+          }
           icon="pulse"
         />
       </div>

@@ -43,7 +43,7 @@ function EmployeePayRow({
         <div className="flex items-center gap-3">
           <Image
             src={employee.image || "/profile-placeholder.png"}
-            alt={employee.name||"profileimage"}
+            alt={employee.name || "profileimage"}
             width="100"
             height="100"
             className="h-12 w-12 rounded-full border-2 border-slate-300 object-cover"
