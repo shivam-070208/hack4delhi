@@ -54,28 +54,28 @@ export default function GrievancePage() {
   // Render
   return (
     <section className="min-h-screen flex-1 space-y-10 bg-[#fbfcfd] p-4 md:p-10">
-      <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-6">
+      <div className="mx-auto w-full max-w-5xl">
+        <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
           My Grievances
         </h1>
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col gap-8 md:flex-row">
           {/* Grievance submission form */}
           <form
             onSubmit={handleSubmit}
-            className="flex-1 mb-6 bg-white border rounded-2xl p-8 shadow-lg space-y-6"
+            className="mb-6 flex-1 space-y-6 rounded-2xl border bg-white p-8 shadow-lg"
             style={{ minWidth: "320px", maxWidth: 440 }}
           >
-            <h2 className="font-bold text-lg text-slate-800 mb-4">
+            <h2 className="mb-4 text-lg font-bold text-slate-800">
               Submit a Grievance
             </h2>
             <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
                 Subject
               </label>
               <input
                 type="text"
                 required
-                className="w-full border border-slate-200 rounded-lg px-4 py-2 text-base shadow-sm focus:outline-none focus:border-indigo-500 transition"
+                className="w-full rounded-lg border border-slate-200 px-4 py-2 text-base shadow-sm transition focus:border-indigo-500 focus:outline-none"
                 value={form.subject}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, subject: e.target.value }))
@@ -84,13 +84,13 @@ export default function GrievancePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
                 Message
               </label>
               <textarea
                 required
                 rows={5}
-                className="w-full border border-slate-200 rounded-lg px-4 py-2 text-base shadow-sm resize-none focus:outline-none focus:border-indigo-500 transition"
+                className="w-full resize-none rounded-lg border border-slate-200 px-4 py-2 text-base shadow-sm transition focus:border-indigo-500 focus:outline-none"
                 value={form.message}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, message: e.target.value }))
@@ -101,9 +101,9 @@ export default function GrievancePage() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full py-3 rounded-lg font-bold text-base transition-colors shadow-sm ${
+              className={`w-full rounded-lg py-3 text-base font-bold shadow-sm transition-colors ${
                 loading
-                  ? "bg-indigo-300 text-white cursor-not-allowed"
+                  ? "cursor-not-allowed bg-indigo-300 text-white"
                   : "bg-indigo-600 text-white hover:bg-indigo-700"
               }`}
             >
@@ -111,10 +111,12 @@ export default function GrievancePage() {
             </button>
             <div className="min-h-[24px]">
               {error && (
-                <div className="text-red-500 mt-2 text-sm text-center">{error}</div>
+                <div className="mt-2 text-center text-sm text-red-500">
+                  {error}
+                </div>
               )}
               {success && (
-                <div className="text-green-600 mt-2 text-sm text-center">
+                <div className="mt-2 text-center text-sm text-green-600">
                   {success}
                 </div>
               )}
@@ -122,21 +124,32 @@ export default function GrievancePage() {
           </form>
 
           {/* Grievance list/table */}
-          <div className="flex-1 w-full">
-            <div className="bg-white border rounded-2xl shadow-lg overflow-x-auto">
+          <div className="w-full flex-1">
+            <div className="overflow-x-auto rounded-2xl border bg-white shadow-lg">
               <table className="min-w-full divide-y divide-slate-100">
                 <thead>
                   <tr className="bg-slate-50">
-                    <th className="py-4 px-5 text-left text-slate-700 font-semibold">Date</th>
-                    <th className="py-4 px-5 text-left text-slate-700 font-semibold">Subject</th>
-                    <th className="py-4 px-5 text-left text-slate-700 font-semibold">Message</th>
-                    <th className="py-4 px-5 text-left text-slate-700 font-semibold">Status</th>
+                    <th className="px-5 py-4 text-left font-semibold text-slate-700">
+                      Date
+                    </th>
+                    <th className="px-5 py-4 text-left font-semibold text-slate-700">
+                      Subject
+                    </th>
+                    <th className="px-5 py-4 text-left font-semibold text-slate-700">
+                      Message
+                    </th>
+                    <th className="px-5 py-4 text-left font-semibold text-slate-700">
+                      Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {(!grievances || grievances.length === 0) && (
                     <tr>
-                      <td colSpan={4} className="py-8 text-slate-500 text-center text-base font-medium">
+                      <td
+                        colSpan={4}
+                        className="py-8 text-center text-base font-medium text-slate-500"
+                      >
                         No grievances found.
                       </td>
                     </tr>
@@ -147,31 +160,34 @@ export default function GrievancePage() {
                       <tr
                         key={g._id || i}
                         className={`border-b last:border-b-0 ${
-                          i % 2 === 0 ? 'bg-white' : 'bg-slate-50'
+                          i % 2 === 0 ? "bg-white" : "bg-slate-50"
                         }`}
                       >
-                        <td className="py-3 px-5 whitespace-nowrap text-slate-700 text-sm">
+                        <td className="px-5 py-3 text-sm whitespace-nowrap text-slate-700">
                           {g.createdAt
                             ? new Date(g.createdAt).toLocaleDateString()
                             : "-"}
                         </td>
-                        <td className="py-3 px-5 whitespace-nowrap max-w-xs text-slate-900 font-semibold text-sm">
+                        <td className="max-w-xs px-5 py-3 text-sm font-semibold whitespace-nowrap text-slate-900">
                           {g.subject || "-"}
                         </td>
-                        <td className="py-3 px-5 break-words max-w-xl text-slate-700 text-sm" style={{ wordBreak: "break-word" }}>
+                        <td
+                          className="max-w-xl px-5 py-3 text-sm break-words text-slate-700"
+                          style={{ wordBreak: "break-word" }}
+                        >
                           {
                             // Prefer g.message, but if missing use g.description (produced by API)
                             g.message || g.description || "-"
                           }
                         </td>
-                        <td className="py-3 px-5">
+                        <td className="px-5 py-3">
                           <span
-                            className={`inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wide ${
+                            className={`inline-block rounded-full px-3 py-1 text-xs font-bold tracking-wide ${
                               g.status === "resolved"
                                 ? "bg-green-100 text-green-700"
                                 : g.status === "rejected"
-                                ? "bg-rose-100 text-rose-700"
-                                : "bg-slate-100 text-slate-700"
+                                  ? "bg-rose-100 text-rose-700"
+                                  : "bg-slate-100 text-slate-700"
                             }`}
                           >
                             {g.status

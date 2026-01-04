@@ -20,18 +20,25 @@ export async function GET(req) {
     if (monthParam) {
       const [year, monthNum] = monthParam.split("-");
       if (!year || !monthNum) {
-        return NextResponse.json({ error: "Invalid 'month' parameter (expected YYYY-MM)" }, { status: 400 });
+        return NextResponse.json(
+          { error: "Invalid 'month' parameter (expected YYYY-MM)" },
+          { status: 400 },
+        );
       }
       startDate = new Date(`${year}-${monthNum}-01`);
       endDate = new Date(startDate);
       endDate.setMonth(endDate.getMonth() + 1);
     } else {
       const now = new Date();
-      startDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
-      endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1));
+      startDate = new Date(
+        Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1),
+      );
+      endDate = new Date(
+        Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1),
+      );
     }
 
-    await Attendance.init && Attendance.init();
+    (await Attendance.init) && Attendance.init();
     const records = await Attendance.find({
       userId: employeeId,
       date: {
@@ -60,7 +67,11 @@ export async function GET(req) {
     const recordMap = {};
     for (const rec of records) {
       const dt = new Date(rec.date);
-      const key = Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate());
+      const key = Date.UTC(
+        dt.getUTCFullYear(),
+        dt.getUTCMonth(),
+        dt.getUTCDate(),
+      );
       recordMap[key] = rec;
     }
 

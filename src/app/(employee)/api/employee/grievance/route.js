@@ -55,9 +55,12 @@ export async function POST(req) {
       : null;
 
   if (!subject || !description) {
-    return new Response(JSON.stringify({ error: "Subject and message are required." }), {
-      status: 400,
-    });
+    return new Response(
+      JSON.stringify({ error: "Subject and message are required." }),
+      {
+        status: 400,
+      },
+    );
   }
 
   const grievance = await Grievance.create({
@@ -80,6 +83,6 @@ export async function POST(req) {
     {
       headers: { "Content-Type": "application/json" },
       status: 201,
-    }
+    },
   );
 }
