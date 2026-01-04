@@ -69,7 +69,7 @@ const NavBar = () => {
         <GlassSurface />
         <NavigationMenu
           viewport={false}
-          className=" items-center  justify-between"
+          className="items-center justify-between"
         >
           <NavigationMenuLogo>
             <NavigationMenuLink asChild>

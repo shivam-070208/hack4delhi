@@ -28,10 +28,10 @@ const Container = ({
   return (
     <Component
       className={cn(
-        "mx-auto ",
+        "mx-auto",
         sizeClassMap[size],
         paddingClassMap[padding],
-        className
+        className,
       )}
       style={style}
       data-testid={dataTestId}

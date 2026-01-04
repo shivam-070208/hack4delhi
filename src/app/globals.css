@@ -181,21 +181,18 @@
     @apply bg-background text-foreground;
   }
   .blur-in {
-    @apply blur-xl opacity-50;
+    @apply opacity-50 blur-xl;
     animation: blurIn 0.4s 1.5s ease forwards;
   }
 }
 
-
-
-
-@keyframes blurIn{
-  0%{
-    opacity:0.5;
-    filter:blur(24px);
+@keyframes blurIn {
+  0% {
+    opacity: 0.5;
+    filter: blur(24px);
   }
-  100%{
-    opacity:1;
-    filter:blur(0);
+  100% {
+    opacity: 1;
+    filter: blur(0);
   }
 }

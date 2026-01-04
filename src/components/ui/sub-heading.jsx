@@ -27,7 +27,7 @@ function SubHeading({
         sizeMap[size],
         alignMap[align],
         "text-muted-foreground",
-        className
+        className,
       )}
       {...rest}
     >

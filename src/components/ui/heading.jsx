@@ -30,7 +30,7 @@ function Heading({
         sizeMap[size],
         alignMap[align],
         "text-foreground",
-        className
+        className,
       )}
       {...rest}
     >
