@@ -3,8 +3,6 @@ import Attendance from "@/db/Attendance";
 import { authOptions } from "@/lib/auth";
 import { connectDB } from "@/db/connect";
 
-
-
 export async function GET(req) {
   await connectDB();
   const session = await getServerSession(authOptions);
@@ -49,9 +47,11 @@ export async function POST(req) {
     });
   }
 
-  const status = typeof body.status === "string" && ["present", "absent", "halfday"].includes(body.status)
-    ? body.status
-    : "present";
+  const status =
+    typeof body.status === "string" &&
+    ["present", "absent", "halfday"].includes(body.status)
+      ? body.status
+      : "present";
 
   // Check if user already has an attendance record for today
   const today = new Date();

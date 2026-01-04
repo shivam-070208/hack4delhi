@@ -64,7 +64,10 @@ export default function EmployeeDashboard() {
   function safe(obj, path, fallback = "N/A") {
     if (!obj) return fallback;
     try {
-      return path.split(".").reduce((o, k) => (o ? o[k] : undefined), obj) ?? fallback;
+      return (
+        path.split(".").reduce((o, k) => (o ? o[k] : undefined), obj) ??
+        fallback
+      );
     } catch {
       return fallback;
     }
@@ -84,8 +87,8 @@ export default function EmployeeDashboard() {
     // Count present, absent, leave in this month
     const statusColor = {
       present: "#6366f1", // indigo-500
-      absent: "#e5e7eb",  // slate-200
-      leave: "#fde68a",   // yellow-300
+      absent: "#e5e7eb", // slate-200
+      leave: "#fde68a", // yellow-300
       halfday: "#38bdf8", // sky-400
     };
 
@@ -97,10 +100,10 @@ export default function EmployeeDashboard() {
         rec.status === "present"
           ? 32
           : rec.status === "halfday"
-          ? 18
-          : rec.status === "leave"
-          ? 24
-          : 8;
+            ? 18
+            : rec.status === "leave"
+              ? 24
+              : 8;
       // Label only for 1st, 5th, 10th, 15th, 20th, 25th, last day
       let label = "";
       const dayNum = parseInt(rec.date?.slice(-2), 10);
@@ -236,7 +239,11 @@ function AttendanceBarChart({ data }) {
   return (
     <div className="flex h-full w-full items-end gap-[2px]">
       {data.map((d, i) => (
-        <div key={i} className="flex flex-1 flex-col items-center" title={d.raw?.date + (d.status ? `: ${d.status}` : "")}>
+        <div
+          key={i}
+          className="flex flex-1 flex-col items-center"
+          title={d.raw?.date + (d.status ? `: ${d.status}` : "")}
+        >
           {/* Bar */}
           <div
             className="w-full rounded-t-md"
