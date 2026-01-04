@@ -254,4 +254,3 @@ function AttendanceBarChart({ data }) {
     </div>
   );
 }
-

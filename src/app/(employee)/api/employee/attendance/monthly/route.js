@@ -60,7 +60,11 @@ export async function GET(req) {
     const recordMap = {};
     for (const rec of records) {
       const dt = new Date(rec.date);
-      const key = Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate());
+      const key = Date.UTC(
+        dt.getUTCFullYear(),
+        dt.getUTCMonth(),
+        dt.getUTCDate(),
+      );
       recordMap[key] = rec;
     }
 

@@ -25,10 +25,7 @@ export async function GET(req) {
       "Content-Type": "application/json",
     },
   });
-
 }
-
-
 
 export async function POST(req) {
   await connectDB();
@@ -69,9 +66,12 @@ export async function POST(req) {
   });
 
   if (existing) {
-    return new Response(JSON.stringify({ error: "Already marked attendance today." }), {
-      status: 400,
-    });
+    return new Response(
+      JSON.stringify({ error: "Already marked attendance today." }),
+      {
+        status: 400,
+      },
+    );
   }
 
   // Optionally, could calculate hours, but for now default to 0.
