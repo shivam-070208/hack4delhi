@@ -37,12 +37,14 @@ A modern full-stack employee management system built with [Next.js 13+ (App Rout
 ### Setup
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/yourusername/employee-management-portal.git
    cd employee-management-portal
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    # or
@@ -64,6 +66,7 @@ A modern full-stack employee management system built with [Next.js 13+ (App Rout
    ```
 
 4. **Run the development server:**
+
    ```bash
    npm run dev
    # or
@@ -100,4 +103,4 @@ Pull requests and suggestions are welcome! For major changes, please open an iss
 
 ---
 
-Built with  Next.js, MongoDB, and modern web best-practices.
+Built with Next.js, MongoDB, and modern web best-practices.
