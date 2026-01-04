@@ -20,12 +20,8 @@ export default function AttendancePage() {
   const [marking, setMarking] = useState(false);
   const [error, setError] = useState(null);
 
-
   const getTodayRecord = useCallback(() => {
-    return (
-      attendance &&
-      attendance.find((r) => r && r.date && isToday(r.date))
-    );
+    return attendance && attendance.find((r) => r && r.date && isToday(r.date));
   }, [attendance]);
   const todayRecord = getTodayRecord();
   const todayMarked = !!todayRecord;
@@ -80,7 +76,7 @@ export default function AttendancePage() {
 
   return (
     <section className="min-h-screen flex-1 space-y-10 bg-[#fbfcfd] p-6 md:p-10">
-      <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-3">
+      <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900">
         Attendance Log
       </h1>
 
@@ -90,24 +86,22 @@ export default function AttendancePage() {
           <button
             onClick={handleMarkAttendance}
             disabled={marking}
-            className={`px-5 py-2 rounded-md font-semibold transition-colors ${
+            className={`rounded-md px-5 py-2 font-semibold transition-colors ${
               marking
-                ? "bg-indigo-300 text-white cursor-not-allowed"
+                ? "cursor-not-allowed bg-indigo-300 text-white"
                 : "bg-indigo-600 text-white hover:bg-indigo-700"
             }`}
           >
             {marking ? "Marking Attendance..." : "Mark Today's Attendance"}
           </button>
-          {error && (
-            <div className="mt-2 text-sm text-red-500">{error}</div>
-          )}
+          {error && <div className="mt-2 text-sm text-red-500">{error}</div>}
         </div>
       )}
 
       {/* Show "Attendance for today already marked" message */}
       {!loading && todayMarked && (
         <div className="mb-6">
-          <span className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded font-medium shadow-sm">
+          <span className="inline-block rounded bg-green-100 px-4 py-2 font-medium text-green-700 shadow-sm">
             You have marked your attendance for today.
             {todayRecord?.status === "present" ? " (Present)" : ""}
           </span>
@@ -123,16 +117,16 @@ export default function AttendancePage() {
         <div>Loading...</div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-slate-200 rounded-xl">
+          <table className="min-w-full rounded-xl border border-slate-200 bg-white">
             <thead>
               <tr>
-                <th className="py-3 px-4 text-left font-semibold text-slate-700 bg-slate-50 border-b">
+                <th className="border-b bg-slate-50 px-4 py-3 text-left font-semibold text-slate-700">
                   Date
                 </th>
-                <th className="py-3 px-4 text-left font-semibold text-slate-700 bg-slate-50 border-b">
+                <th className="border-b bg-slate-50 px-4 py-3 text-left font-semibold text-slate-700">
                   Status
                 </th>
-                <th className="py-3 px-4 text-left font-semibold text-slate-700 bg-slate-50 border-b">
+                <th className="border-b bg-slate-50 px-4 py-3 text-left font-semibold text-slate-700">
                   Hours
                 </th>
               </tr>
@@ -147,15 +141,15 @@ export default function AttendancePage() {
               ) : (
                 attendance.map((record) => (
                   <tr key={record._id || record.date}>
-                    <td className="py-2 px-4 border-b">
+                    <td className="border-b px-4 py-2">
                       {record?.date
                         ? new Date(record.date).toLocaleDateString()
                         : ""}
                     </td>
-                    <td className="py-2 px-4 border-b capitalize">
+                    <td className="border-b px-4 py-2 capitalize">
                       {record.status || ""}
                     </td>
-                    <td className="py-2 px-4 border-b">
+                    <td className="border-b px-4 py-2">
                       {typeof record.hours === "number" ? record.hours : ""}
                     </td>
                   </tr>
