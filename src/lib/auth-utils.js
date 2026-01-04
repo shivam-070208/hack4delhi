@@ -23,12 +23,13 @@ export const authRequire = async (role = "user") => {
 
 export const unauthRequire = async () => {
   const session = await getSession();
+
   if (session && session?.user) {
-    if (session?.user.role.toLowerCase() === "admin") {
+    if (session?.user.role?.toLowerCase() === "admin") {
       redirect("/admin/dashboard");
-    } else if (session?.user.role === "HR") {
+    } else if (session?.user?.role === "HR") {
       redirect("/hr/dashboard");
-    } else if (session?.user.role === "employee") {
+    } else if (session?.user.role?.toLowerCase() === "employee") {
       redirect("/employee/dashboard");
     }
   }

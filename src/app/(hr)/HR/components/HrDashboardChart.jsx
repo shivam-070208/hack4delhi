@@ -82,8 +82,6 @@ const payrollComboData = {
   ],
 };
 
-/* ================= PAYROLL OPTIONS ================= */
-
 const payrollOptions = {
   responsive: true,
   maintainAspectRatio: false,
