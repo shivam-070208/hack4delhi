@@ -1,6 +1,4 @@
-const {
-  default: HRAttendanceBoard,
-} = require("@/components/hr/HRAttendanceBoard");
+import HRAttendanceBoard from "@/components/hr/HRAttendanceBoard";
 
 export default function page() {
   return <HRAttendanceBoard />;

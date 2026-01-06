@@ -102,7 +102,7 @@ export default function HRAttendanceBoard() {
         return <Calendar className="h-4 w-4" />;
     }
   };
-
+ 
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -170,8 +170,8 @@ export default function HRAttendanceBoard() {
               >
                 <option value="">Select an employee</option>
                 {employees.map((emp) => (
-                  <option key={emp._id} value={emp._id}>
-                    {emp.name} ({emp.email})
+                  <option key={emp._id} value={emp.userId._id}>
+                    {emp.userId._id}
                   </option>
                 ))}
               </select>
