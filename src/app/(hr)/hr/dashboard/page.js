@@ -25,7 +25,6 @@ export default function HrPage() {
             "On Leave Today: 10",
           ]}
         />
-
         <HrStatCard
           title="Recruitment Status"
           icon="briefcase"

@@ -171,7 +171,7 @@ export default function HRAttendanceBoard() {
                 <option value="">Select an employee</option>
                 {employees.map((emp) => (
                   <option key={emp._id} value={emp._id}>
-                    {emp.name} ({emp.email})
+                    {emp.userId}
                   </option>
                 ))}
               </select>
@@ -313,7 +313,7 @@ export default function HRAttendanceBoard() {
                       </Badge>
                       {record.status === "halfday" && (
                         <span className="text-sm text-slate-600">
-                          {record.hours}h
+                          {record.hours}
                         </span>
                       )}
                     </div>
