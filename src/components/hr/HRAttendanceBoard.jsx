@@ -102,7 +102,7 @@ export default function HRAttendanceBoard() {
         return <Calendar className="h-4 w-4" />;
     }
   };
-
+ 
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -170,8 +170,8 @@ export default function HRAttendanceBoard() {
               >
                 <option value="">Select an employee</option>
                 {employees.map((emp) => (
-                  <option key={emp._id} value={emp._id}>
-                    {emp.userId}
+                  <option key={emp._id} value={emp.userId._id}>
+                    {emp.userId._id}
                   </option>
                 ))}
               </select>
@@ -313,7 +313,7 @@ export default function HRAttendanceBoard() {
                       </Badge>
                       {record.status === "halfday" && (
                         <span className="text-sm text-slate-600">
-                          {record.hours}
+                          {record.hours}h
                         </span>
                       )}
                     </div>

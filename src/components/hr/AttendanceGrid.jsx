@@ -22,9 +22,9 @@ export default function AttendanceGrid({ records = [] }) {
   if (records.length === 0)
     return <div className="p-4">No attendance recorded yet</div>;
   return (
-    <div className="p-4">
+    <div className="p-4 max-h-20 overflow-scroll">
       <div
-        className="grid grid-flow-col gap-1"
+        className="grid grid-cols-3 gap-1"
         style={{ gridAutoColumns: "12px" }}
       >
         {days.map((d) => {
