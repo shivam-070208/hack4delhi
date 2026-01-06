@@ -31,14 +31,6 @@ export default function DepartmentTable({ departments }) {
                 <span className="text-sm text-gray-400">No description</span>
               )}
             </div>
-            <div className="mt-4 flex">
-              <Link
-                href={`./departments/${d._id}`}
-                className="bg-primary/90 hover:bg-primary border-primary/30 ml-auto rounded-lg border px-4 py-2 text-sm font-medium text-white shadow-sm transition-all duration-150"
-              >
-                View &rarr;
-              </Link>
-            </div>
           </CardContent>
         </Card>
       ))}
