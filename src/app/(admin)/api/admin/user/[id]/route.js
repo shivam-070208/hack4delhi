@@ -47,7 +47,7 @@ export async function GET(req, { params }) {
       total = agg.reduce((s, a) => s + a.total, 0);
     } else if (user.role === "EMPLOYEE") {
       const agg = await SalaryTransaction.aggregate([
-        { $match: { employeeId:id } },
+        { $match: { employeeId: id } },
         { $group: { _id: "$month", total: { $sum: "$amount" } } },
         { $sort: { _id: 1 } },
       ]);
